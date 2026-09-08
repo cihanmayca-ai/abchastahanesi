@@ -323,5 +323,29 @@
 
 <script src="script.js"></script>
 
+  <script>
+  (function(d,t) {
+    var BASE_URL="https://stg-api.senkron.ai";
+    var INBOX_ID="cmtsmt85p000yid078m115ohs";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/api/inboxes/"+INBOX_ID+"/widget/sdk.js";
+    g.async=true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      if(window.chatWidgetSDK&&typeof window.chatWidgetSDK.run==='function'){
+        window.chatWidgetSDK.run({
+          inboxId:INBOX_ID,
+          baseUrl:BASE_URL
+        });
+      }else{
+        console.error('Chat Widget SDK not loaded');
+      }
+    };
+    g.onerror=function(){
+      console.error('Failed to load Chat Widget SDK');
+    };
+  })(document,"script");
+</script>
+
 </body>
 </html>
